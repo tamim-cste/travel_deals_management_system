@@ -1,19 +1,31 @@
 from flask import Flask, jsonify
-
+from database.store import db
+from routes.deal_routes import deals_bp
 
 
 def create_app():
     app = Flask(__name__)
 
-   
+    # SQLite database config
+    app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///travel_deals.db"
+    app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
-    #Global Error Handlers
+    
+    db.init_app(app)
 
+    # Create all tables if they don't exist
+    with app.app_context():
+        db.create_all()
+
+
+    app.register_blueprint(deals_bp)
+
+    # Global error handler
     @app.errorhandler(404)
     def not_found(e):
         return jsonify({"success": False, "message": "Endpoint not found."}), 404
 
-   
+    
     @app.errorhandler(405)
     def method_not_allowed(e):
         return jsonify({"success": False, "message": "Method not allowed."}), 405
