@@ -1,0 +1,49 @@
+{
+  "info": {
+    "_postman_id": "f5b7bb82-bd89-4f42-9e7b-eae0282e0031",
+    "name": "Travel_Deals_Management_System",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "54702024"
+  },
+  "item": [
+    {
+      "name": "Get Request",
+      "request": {
+        "method": "GET",
+        "header": []
+      },
+      "response": []
+    },
+    {
+      "name": "Post Request",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"destination\":\"Australia\",\n    \"price\":100000,\n    \"platform\":\"MakeMyTrip\",\n    \"rating\":5,\n    \"travel_type\":\"Family\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://127.0.0.1:5000/deals",
+          "protocol": "http",
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "port": "5000",
+          "path": [
+            "deals"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
