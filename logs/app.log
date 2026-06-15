@@ -103,3 +103,5 @@
 2026-06-15 15:40:12 | INFO | 127.0.0.1 - - [15/Jun/2026 15:40:12] "[33mGET /deals/ HTTP/1.1[0m" 404 -
 2026-06-15 15:40:17 | INFO | Fetched all deals — total: 8
 2026-06-15 15:40:17 | INFO | 127.0.0.1 - - [15/Jun/2026 15:40:17] "GET /deals HTTP/1.1" 200 -
+2026-06-15 17:15:03 | WARNING |  * Debugger is active!
+2026-06-15 17:15:03 | INFO |  * Debugger PIN: 996-030-192
