@@ -10,7 +10,21 @@
       "name": "Get Request",
       "request": {
         "method": "GET",
-        "header": []
+        "header": [],
+        "url": {
+          "raw": "http://127.0.0.1:5000/deals",
+          "protocol": "http",
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "port": "5000",
+          "path": [
+            "deals"
+          ]
+        }
       },
       "response": []
     },
@@ -21,7 +35,7 @@
         "header": [],
         "body": {
           "mode": "raw",
-          "raw": "{\n    \"destination\":\"Australia\",\n    \"price\":100000,\n    \"platform\":\"MakeMyTrip\",\n    \"rating\":5,\n    \"travel_type\":\"Family\"\n}",
+          "raw": "{\n    \"destination\":\"Thailand\",\n    \"price\":300000,\n    \"platform\":\"Airbnb\",\n    \"rating\":5,\n    \"travel_type\":\"Luxury\"\n}",
           "options": {
             "raw": {
               "language": "json"
@@ -40,6 +54,182 @@
           "port": "5000",
           "path": [
             "deals"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Single ID",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"destination\":\"Canada\",\n    \"price\":200000,\n    \"platform\":\"Airbnb\",\n    \"rating\":5,\n    \"travel_type\":\"Luxury\"\n}"
+        },
+        "url": {
+          "raw": "http://127.0.0.1:5000/deals/2607016e-5b9c-4514-86f4-ab2c2ace574d",
+          "protocol": "http",
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "port": "5000",
+          "path": [
+            "deals",
+            "2607016e-5b9c-4514-86f4-ab2c2ace574d"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Searching",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"destination\":\"Canada\",\n    \"price\":200000,\n    \"platform\":\"Airbnb\",\n    \"rating\":5,\n    \"travel_type\":\"Luxury\"\n}"
+        },
+        "url": {
+          "raw": "http://127.0.0.1:5000/deals/search?platform=%share%",
+          "protocol": "http",
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "port": "5000",
+          "path": [
+            "deals",
+            "search"
+          ],
+          "query": [
+            {
+              "key": "platform",
+              "value": "%share%"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Sorting",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"destination\":\"Canada\",\n    \"price\":200000,\n    \"platform\":\"Airbnb\",\n    \"rating\":5,\n    \"travel_type\":\"Luxury\"\n}"
+        },
+        "url": {
+          "raw": "http://127.0.0.1:5000/deals/sort?sort_by=price&order=asc",
+          "protocol": "http",
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "port": "5000",
+          "path": [
+            "deals",
+            "sort"
+          ],
+          "query": [
+            {
+              "key": "sort_by",
+              "value": "price"
+            },
+            {
+              "key": "order",
+              "value": "asc"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Filter",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"destination\":\"Thailand\",\n    \"price\":300000,\n    \"platform\":\"Airbnb\",\n    \"rating\":5,\n    \"travel_type\":\"Luxury\"\n}"
+        },
+        "url": {
+          "raw": "http://127.0.0.1:5000/deals/filter?min_price=100000&max_price=300000",
+          "protocol": "http",
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "port": "5000",
+          "path": [
+            "deals",
+            "filter"
+          ],
+          "query": [
+            {
+              "key": "min_price",
+              "value": "100000"
+            },
+            {
+              "key": "max_price",
+              "value": "300000"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Recent",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"destination\":\"Canada\",\n    \"price\":200000,\n    \"platform\":\"Airbnb\",\n    \"rating\":5,\n    \"travel_type\":\"Luxury\"\n}"
+        },
+        "url": {
+          "raw": "http://127.0.0.1:5000/deals/recent",
+          "protocol": "http",
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "port": "5000",
+          "path": [
+            "deals",
+            "recent"
           ]
         }
       },
