@@ -1,24 +1,31 @@
 # Travel Deal Management System
 
-A simple REST API built with Flask and SQLite to manage travel deals.
+A modular REST API built with Flask and SQLite to manage, search, filter, and sort travel deals.
 
 ---
 
 ## What This Project Does
 
-This API lets you:
 - Add a new travel deal
-- View all available deals
-- View details of a specific deal
+- View all deals
+- View a single deal
+- Search deals by destination, platform, or travel type
+- Filter deals by price range
+- Sort deals by any field
+- Track recently viewed deals
+- Log all API activities
 
 ---
 
 ## Tech Stack
 
-- **Python 3**
-- **Flask** — web framework
-- **Flask-SQLAlchemy** — ORM for database
-- **SQLite** — lightweight database
+| Tool | Purpose |
+|---|---|
+| Python 3 | Programming language |
+| Flask | Web framework |
+| Flask-SQLAlchemy | ORM for database |
+| SQLite | Lightweight database |
+| logging | Activity tracking |
 
 ---
 
@@ -26,15 +33,18 @@ This API lets you:
 
 ```
 project/
-├── app.py                  # App entry point
+├── app.py                    # App entry point & config
 ├── routes/
-│   └── deal_routes.py      # API endpoints
+│   └── deal_routes.py        # All API endpoints
 ├── services/
-│   └── deal_service.py     # Business logic
+│   └── deal_service.py       # Business logic
 ├── utils/
-│   └── validators.py       # Input validation
+│   ├── validators.py         # Reusable input validation
+│   └── logger.py             # Logging setup
 ├── database/
-│   └── store.py            # Database models & queries
+│   └── store.py              # DB models & queries
+├── logs/
+│   └── app.log               # Generated at runtime
 ├── requirements.txt
 └── README.md
 ```
@@ -46,7 +56,7 @@ project/
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/tamim-cste/travel_deals_management_system.git
+git clone https://github.com/tamim-cste/travel_deals_management_system
 cd travel_deals_management_system
 ```
 
@@ -65,7 +75,7 @@ venv\Scripts\activate
 ### 3. Install dependencies
 
 ```bash
-pip install -r requirements.txt
+pip3 install -r requirements.txt
 ```
 
 ### 4. Run the server
@@ -76,11 +86,13 @@ python3 app.py
 
 API will be running at: `http://127.0.0.1:5000`
 
+> A `logs/app.log` file and `instance/travel_deals.db` database will be created automatically on first run.
+
 ---
 
-## API Endpoints
+## API Reference
 
-### Add a Travel Deal
+### 1. Add a Travel Deal
 ```
 POST /deals
 ```
@@ -94,103 +106,118 @@ POST /deals
   "travel_type": "Luxury"
 }
 ```
-**Success Response (201):**
-```json
-{
-  "success": true,
-  "message": "Travel deal created successfully.",
-  "data": {
-    "id": "uuid",
-    "destination": "Dubai",
-    "price": 5000.0,
-    "platform": "Booking",
-    "rating": 4.5,
-    "travel_type": "Luxury",
-    "created_at": "2024-01-01T10:00:00Z"
-  }
-}
-```
+**Success → 201** | **Validation Error → 422**
 
 ---
 
-### Get All Deals
+### 2. Get All Deals
 ```
 GET /deals
 ```
-**Success Response (200):**
-```json
-{
-  "success": true,
-  "message": "Deals retrieved successfully.",
-  "data": {
-    "total": 2,
-    "deals": [...]
-  }
-}
-```
+**Success → 200**
 
 ---
 
-### Get Single Deal
+### 3. Get Single Deal
 ```
 GET /deals/<deal_id>
 ```
-**Success Response (200):**
-```json
-{
-  "success": true,
-  "message": "Deal retrieved successfully.",
-  "data": { ... }
-}
+**Success → 200** | **Not Found → 404**
+
+---
+
+### 4. Search Deals
 ```
-**Not Found (404):**
-```json
-{
-  "success": false,
-  "message": "Deal with id 'abc' not found."
-}
+GET /deals/search?destination=dubai
+GET /deals/search?platform=booking
+GET /deals/search?travel_type=Luxury
+GET /deals/search?destination=dubai&platform=booking
 ```
+- Case-insensitive
+- Partial match supported
+- At least one parameter required
+
+**Success → 200** | **No params → 400**
+
+---
+
+### 5. Filter by Price Range
+```
+GET /deals/filter?min_price=1000&max_price=5000
+GET /deals/filter?min_price=2000
+GET /deals/filter?max_price=3000
+```
+**Success → 200** | **Validation Error → 422**
+
+---
+
+### 6. Sort Deals
+```
+GET /deals/sort?sort_by=price&order=asc
+GET /deals/sort?sort_by=rating&order=desc
+```
+**Allowed sort_by values:** `price`, `rating`, `destination`, `created_at`
+
+**Allowed order values:** `asc`, `desc`
+
+**Success → 200** | **Invalid field/order → 422**
+
+---
+
+### 7. Recently Viewed Deals
+```
+GET /deals/recent
+```
+Tracks the last 10 individually viewed deals (via `GET /deals/<id>`).
+
+**Success → 200**
 
 ---
 
 ## Validation Rules
 
+### Deal Creation
 | Field | Rule |
 |---|---|
-| `destination` | Cannot be empty |
-| `price` | Must be a positive number |
-| `platform` | Cannot be empty |
-| `rating` | Must be between 1 and 5 |
-| `travel_type` | Must be one of: `Budget`, `Luxury`, `Adventure`, `Family` |
+| `destination` | Required, non-empty string |
+| `price` | Required, positive number |
+| `platform` | Required, non-empty string |
+| `rating` | Required, number between 1–5 |
+| `travel_type` | Must be: `Budget`, `Luxury`, `Adventure`, `Family` |
 
-**Validation Error Response (422):**
-```json
-{
-  "success": false,
-  "message": "Validation failed.",
-  "data": {
-    "errors": ["'price' must be a positive number."]
-  }
-}
-```
+### Filter
+| Param | Rule |
+|---|---|
+| `min_price` | Cannot be negative |
+| `max_price` | Cannot be negative or less than `min_price` |
+
+### Sort
+| Param | Rule |
+|---|---|
+| `sort_by` | Must be one of: `price`, `rating`, `destination`, `created_at` |
+| `order` | Must be `asc` or `desc` |
 
 ---
 
-## HTTP Status Codes Used
+## HTTP Status Codes
 
 | Code | Meaning |
 |---|---|
-| `200` | OK — request successful |
-| `201` | Created — new deal added |
-| `404` | Not Found — deal doesn't exist |
-| `405` | Method Not Allowed |
-| `422` | Unprocessable Entity — validation failed |
+| `200` | OK |
+| `201` | Created |
+| `400` | Bad Request |
+| `404` | Not Found |
+| `422` | Validation Failed |
 | `500` | Internal Server Error |
 
 ---
 
-## Notes
+## Logging
 
-- Data is saved in a local SQLite database (`instance/travel_deals.db`)
-- Data persists even after restarting the server
-- Import `postman_collection.json` in Postman to test all endpoints quickly
+All API activity is logged to `logs/app.log` and printed to the terminal.
+
+| Level | When used |
+|---|---|
+| `INFO` | Successful operations |
+| `WARNING` | Validation errors, empty searches |
+| `ERROR` | Missing request body, resource not found |
