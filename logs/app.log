@@ -111,3 +111,31 @@
 2026-06-15 17:45:50 | INFO | 127.0.0.1 - - [15/Jun/2026 17:45:50] "GET /deals/fdea3bb7-2f47-4a9c-8168-31c40cb7e13e HTTP/1.1" 200 -
 2026-06-15 17:46:05 | INFO | Fetched recently viewed deals — total: 1
 2026-06-15 17:46:05 | INFO | 127.0.0.1 - - [15/Jun/2026 17:46:05] "GET /deals/recent HTTP/1.1" 200 -
+2026-06-16 10:45:24 | INFO | [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.0.235:5000
+2026-06-16 10:45:24 | INFO | [33mPress CTRL+C to quit[0m
+2026-06-16 10:45:24 | INFO |  * Restarting with stat
+2026-06-16 10:45:25 | WARNING |  * Debugger is active!
+2026-06-16 10:45:25 | INFO |  * Debugger PIN: 128-530-508
+2026-06-16 10:45:40 | INFO | Fetched all deals — total: 8
+2026-06-16 10:45:40 | INFO | 127.0.0.1 - - [16/Jun/2026 10:45:40] "GET /deals HTTP/1.1" 200 -
+2026-06-16 10:45:40 | INFO | 127.0.0.1 - - [16/Jun/2026 10:45:40] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2026-06-16 10:45:41 | INFO | Fetched all deals — total: 8
+2026-06-16 10:45:41 | INFO | 127.0.0.1 - - [16/Jun/2026 10:45:41] "GET /deals HTTP/1.1" 200 -
+2026-06-16 10:45:41 | INFO | Fetched all deals — total: 8
+2026-06-16 10:45:41 | INFO | 127.0.0.1 - - [16/Jun/2026 10:45:41] "GET /deals HTTP/1.1" 200 -
+2026-06-16 10:45:47 | WARNING | Deal not found: f78cda95-cdac-4e22-ad8f-920f08e3bc91
+2026-06-16 10:45:47 | ERROR | GET /deals/f78cda95-cdac-4e22-ad8f-920f08e3bc91 — not found.
+2026-06-16 10:45:47 | INFO | 127.0.0.1 - - [16/Jun/2026 10:45:47] "[33mGET /deals/f78cda95-cdac-4e22-ad8f-920f08e3bc91 HTTP/1.1[0m" 404 -
+2026-06-16 10:46:12 | INFO | Fetched deal: b9b3ff57-4880-4296-9ae3-69e47b048b4f
+2026-06-16 10:46:12 | INFO | 127.0.0.1 - - [16/Jun/2026 10:46:12] "GET /deals/b9b3ff57-4880-4296-9ae3-69e47b048b4f HTTP/1.1" 200 -
+2026-06-16 10:55:11 | INFO | Fetched recently viewed deals — total: 1
+2026-06-16 10:55:11 | INFO | 127.0.0.1 - - [16/Jun/2026 10:55:11] "GET /deals/recent HTTP/1.1" 200 -
+2026-06-16 10:55:18 | INFO | Fetched all deals — total: 8
+2026-06-16 10:55:18 | INFO | 127.0.0.1 - - [16/Jun/2026 10:55:18] "GET /deals HTTP/1.1" 200 -
+2026-06-16 10:55:38 | INFO | Fetched deal: 9da3bd05-9018-4fcd-936e-60217dc1a808
+2026-06-16 10:55:38 | INFO | 127.0.0.1 - - [16/Jun/2026 10:55:38] "GET /deals/9da3bd05-9018-4fcd-936e-60217dc1a808 HTTP/1.1" 200 -
+2026-06-16 10:55:46 | INFO | Fetched recently viewed deals — total: 2
+2026-06-16 10:55:46 | INFO | 127.0.0.1 - - [16/Jun/2026 10:55:46] "GET /deals/recent HTTP/1.1" 200 -

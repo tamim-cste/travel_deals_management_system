@@ -3,7 +3,7 @@ VALID_SORT_FIELDS = {"price", "rating", "destination", "created_at"}
 VALID_SORT_ORDERS = {"asc", "desc"}
 
 REQUIRED_FIELDS = ["destination", "price", "platform", "rating", "travel_type"]
-
+DEFAULT_POPULAR_LIMIT = 10
 
 # ---------------- Deal Creation Validation ---------------------
 
@@ -95,6 +95,27 @@ def validate_sort_params(sort_by, order):
         errors.append("'order' must be 'asc' or 'desc'.")
 
     return (len(errors) == 0), errors
+
+
+
+
+
+#--------------------Limit -------------------------------
+
+def validate_limit_param(limit):
+    """Returns (is_valid, errors, parsed_limit)."""
+    errors = []
+    parsed_limit = DEFAULT_POPULAR_LIMIT
+
+    if limit is not None:
+        try:
+            parsed_limit = int(limit)
+            if parsed_limit <= 0:
+                errors.append("'limit' must be a positive integer.")
+        except (TypeError, ValueError):
+            errors.append("'limit' must be a valid integer.")
+
+    return (len(errors) == 0), errors, parsed_limit
 
 
 
