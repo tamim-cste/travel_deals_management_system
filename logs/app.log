@@ -381,3 +381,11 @@
 2026-06-16 15:55:56 | INFO | 127.0.0.1 - - [16/Jun/2026 15:55:56] "GET /deals/popular HTTP/1.1" 200 -
 2026-06-16 15:56:37 | INFO | Fetched popular deals — limit=10 — results: 5
 2026-06-16 15:56:37 | INFO | 127.0.0.1 - - [16/Jun/2026 15:56:37] "GET /deals/popular HTTP/1.1" 200 -
+2026-06-16 18:07:48 | WARNING |  * Debugger is active!
+2026-06-16 18:07:48 | INFO |  * Debugger PIN: 128-530-508
+2026-06-16 18:22:55 | INFO | Fetched all deals — total: 5
+2026-06-16 18:22:55 | INFO | 127.0.0.1 - - [16/Jun/2026 18:22:55] "GET /deals HTTP/1.1" 200 -
+2026-06-16 18:28:31 | INFO | Sort executed — sort_by=price, order=asc — results: 5
+2026-06-16 18:28:31 | INFO | 127.0.0.1 - - [16/Jun/2026 18:28:31] "GET /deals/sort?order=asc HTTP/1.1" 200 -
+2026-06-16 18:29:09 | INFO | Stats retrieved — total=72, success=63, failed=9
+2026-06-16 18:29:09 | INFO | 127.0.0.1 - - [16/Jun/2026 18:29:09] "GET /stats HTTP/1.1" 200 -
