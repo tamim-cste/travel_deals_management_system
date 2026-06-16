@@ -1,239 +1,809 @@
 {
   "info": {
-    "_postman_id": "f5b7bb82-bd89-4f42-9e7b-eae0282e0031",
-    "name": "Travel_Deals_Management_System",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "_exporter_id": "54702024"
+    "name": "Travel Deal Management API",
+    "description": "API collection for Travel Deal Management System",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
   "item": [
     {
-      "name": "Get Request",
-      "request": {
-        "method": "GET",
-        "header": [],
-        "url": {
-          "raw": "http://127.0.0.1:5000/deals",
-          "protocol": "http",
-          "host": [
-            "127",
-            "0",
-            "0",
-            "1"
-          ],
-          "port": "5000",
-          "path": [
-            "deals"
-          ]
-        }
-      },
-      "response": []
-    },
-    {
-      "name": "Post Request",
-      "request": {
-        "method": "POST",
-        "header": [],
-        "body": {
-          "mode": "raw",
-          "raw": "{\n    \"destination\":\"Thailand\",\n    \"price\":300000,\n    \"platform\":\"Airbnb\",\n    \"rating\":5,\n    \"travel_type\":\"Luxury\"\n}",
-          "options": {
-            "raw": {
-              "language": "json"
-            }
-          }
-        },
-        "url": {
-          "raw": "http://127.0.0.1:5000/deals",
-          "protocol": "http",
-          "host": [
-            "127",
-            "0",
-            "0",
-            "1"
-          ],
-          "port": "5000",
-          "path": [
-            "deals"
-          ]
-        }
-      },
-      "response": []
-    },
-    {
-      "name": "Single ID",
-      "protocolProfileBehavior": {
-        "disableBodyPruning": true
-      },
-      "request": {
-        "method": "GET",
-        "header": [],
-        "body": {
-          "mode": "raw",
-          "raw": "{\n    \"destination\":\"Canada\",\n    \"price\":200000,\n    \"platform\":\"Airbnb\",\n    \"rating\":5,\n    \"travel_type\":\"Luxury\"\n}"
-        },
-        "url": {
-          "raw": "http://127.0.0.1:5000/deals/2607016e-5b9c-4514-86f4-ab2c2ace574d",
-          "protocol": "http",
-          "host": [
-            "127",
-            "0",
-            "0",
-            "1"
-          ],
-          "port": "5000",
-          "path": [
-            "deals",
-            "2607016e-5b9c-4514-86f4-ab2c2ace574d"
-          ]
-        }
-      },
-      "response": []
-    },
-    {
-      "name": "Searching",
-      "protocolProfileBehavior": {
-        "disableBodyPruning": true
-      },
-      "request": {
-        "method": "GET",
-        "header": [],
-        "body": {
-          "mode": "raw",
-          "raw": "{\n    \"destination\":\"Canada\",\n    \"price\":200000,\n    \"platform\":\"Airbnb\",\n    \"rating\":5,\n    \"travel_type\":\"Luxury\"\n}"
-        },
-        "url": {
-          "raw": "http://127.0.0.1:5000/deals/search?platform=%share%",
-          "protocol": "http",
-          "host": [
-            "127",
-            "0",
-            "0",
-            "1"
-          ],
-          "port": "5000",
-          "path": [
-            "deals",
-            "search"
-          ],
-          "query": [
-            {
-              "key": "platform",
-              "value": "%share%"
-            }
-          ]
-        }
-      },
-      "response": []
-    },
-    {
-      "name": "Sorting",
-      "protocolProfileBehavior": {
-        "disableBodyPruning": true
-      },
-      "request": {
-        "method": "GET",
-        "header": [],
-        "body": {
-          "mode": "raw",
-          "raw": "{\n    \"destination\":\"Canada\",\n    \"price\":200000,\n    \"platform\":\"Airbnb\",\n    \"rating\":5,\n    \"travel_type\":\"Luxury\"\n}"
-        },
-        "url": {
-          "raw": "http://127.0.0.1:5000/deals/sort?sort_by=price&order=asc",
-          "protocol": "http",
-          "host": [
-            "127",
-            "0",
-            "0",
-            "1"
-          ],
-          "port": "5000",
-          "path": [
-            "deals",
-            "sort"
-          ],
-          "query": [
-            {
-              "key": "sort_by",
-              "value": "price"
+      "name": "Deals",
+      "item": [
+        {
+          "name": "Get All Deals",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:5000/deals",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "deals"
+              ]
             },
-            {
-              "key": "order",
-              "value": "asc"
-            }
-          ]
-        }
-      },
-      "response": []
-    },
-    {
-      "name": "Filter",
-      "protocolProfileBehavior": {
-        "disableBodyPruning": true
-      },
-      "request": {
-        "method": "GET",
-        "header": [],
-        "body": {
-          "mode": "raw",
-          "raw": "{\n    \"destination\":\"Thailand\",\n    \"price\":300000,\n    \"platform\":\"Airbnb\",\n    \"rating\":5,\n    \"travel_type\":\"Luxury\"\n}"
+            "description": "Retrieve all travel deals"
+          },
+          "response": []
         },
-        "url": {
-          "raw": "http://127.0.0.1:5000/deals/filter?min_price=100000&max_price=300000",
-          "protocol": "http",
-          "host": [
-            "127",
-            "0",
-            "0",
-            "1"
-          ],
-          "port": "5000",
-          "path": [
-            "deals",
-            "filter"
-          ],
-          "query": [
-            {
-              "key": "min_price",
-              "value": "100000"
+        {
+          "name": "Create Deal",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"destination\": \"Paris\",\n  \"price\": 1200,\n  \"platform\": \"Booking.com\",\n  \"rating\": 4.5,\n  \"travel_type\": \"Luxury\"\n}"
             },
-            {
-              "key": "max_price",
-              "value": "300000"
-            }
-          ]
+            "url": {
+              "raw": "http://localhost:5000/deals",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "deals"
+              ]
+            },
+            "description": "Create a new travel deal"
+          },
+          "response": []
+        },
+        {
+          "name": "Get Deal by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:5000/deals/1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "deals",
+                "1"
+              ]
+            },
+            "description": "Retrieve a specific deal by ID"
+          },
+          "response": []
+        },
+        {
+          "name": "Update Deal by ID",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"destination\": \"Tokyo\",\n  \"price\": 1500,\n  \"platform\": \"Agoda\",\n  \"rating\": 4.8,\n  \"travel_type\": \"Adventure\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:5000/deals/1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "deals",
+                "1"
+              ]
+            },
+            "description": "Update an existing deal by ID"
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Deal by ID",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:5000/deals/1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "deals",
+                "1"
+              ]
+            },
+            "description": "Delete a deal by ID"
+          },
+          "response": []
+        },
+        {
+          "name": "Error: Missing destination",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"price\": 1200,\n  \"platform\": \"Booking.com\",\n  \"rating\": 4.5,\n  \"travel_type\": \"Luxury\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:5000/deals",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "deals"
+              ]
+            },
+            "description": "Test validation: missing destination"
+          },
+          "response": []
+        },
+        {
+          "name": "Error: Negative price",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"destination\": \"Paris\",\n  \"price\": -100,\n  \"platform\": \"Booking.com\",\n  \"rating\": 4.5,\n  \"travel_type\": \"Luxury\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:5000/deals",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "deals"
+              ]
+            },
+            "description": "Test validation: price must be positive"
+          },
+          "response": []
+        },
+        {
+          "name": "Error: Rating out of range",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"destination\": \"Paris\",\n  \"price\": 1200,\n  \"platform\": \"Booking.com\",\n  \"rating\": 6,\n  \"travel_type\": \"Luxury\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:5000/deals",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "deals"
+              ]
+            },
+            "description": "Test validation: rating must be between 1 and 5"
+          },
+          "response": []
+        },
+        {
+          "name": "Error: Invalid travel type",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"destination\": \"Paris\",\n  \"price\": 1200,\n  \"platform\": \"Booking.com\",\n  \"rating\": 4.5,\n  \"travel_type\": \"InvalidType\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:5000/deals",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "deals"
+              ]
+            },
+            "description": "Test validation: invalid travel type"
+          },
+          "response": []
+        },
+        {
+          "name": "Error: Deal not found",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:5000/deals/999",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "deals",
+                "999"
+              ]
+            },
+            "description": "Test error: deal with ID 999 not found"
+          },
+          "response": []
+        },
+        {
+          "name": "Search Deals",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:5000/deals/search?destination=Paris&platform=Expedia&travel_type=Luxury",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "deals",
+                "search"
+              ],
+              "query": [
+                {
+                  "key": "destination",
+                  "value": "Paris"
+                },
+                {
+                  "key": "platform",
+                  "value": "Expedia"
+                },
+                {
+                  "key": "travel_type",
+                  "value": "Luxury"
+                }
+              ]
+            },
+            "description": "Search deals by destination, platform, and travel_type"
+          },
+          "response": []
+        },
+        {
+          "name": "Search by Destination",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:5000/deals/search?destination=Bangkok",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "deals",
+                "search"
+              ],
+              "query": [
+                {
+                  "key": "destination",
+                  "value": "Bangkok"
+                }
+              ]
+            },
+            "description": "Search deals by destination only"
+          },
+          "response": []
+        },
+        {
+          "name": "Filter by Price Range",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:5000/deals/filter?min_price=100&max_price=1000",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "deals",
+                "filter"
+              ],
+              "query": [
+                {
+                  "key": "min_price",
+                  "value": "100"
+                },
+                {
+                  "key": "max_price",
+                  "value": "1000"
+                }
+              ]
+            },
+            "description": "Filter deals by minimum and maximum price"
+          },
+          "response": []
+        },
+        {
+          "name": "Filter by Min Price",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:5000/deals/filter?min_price=500",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "deals",
+                "filter"
+              ],
+              "query": [
+                {
+                  "key": "min_price",
+                  "value": "500"
+                }
+              ]
+            },
+            "description": "Filter deals by minimum price only"
+          },
+          "response": []
+        },
+        {
+          "name": "Sort by Price - Ascending",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:5000/deals/sort?sort_by=price&order=asc",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "deals",
+                "sort"
+              ],
+              "query": [
+                {
+                  "key": "sort_by",
+                  "value": "price"
+                },
+                {
+                  "key": "order",
+                  "value": "asc"
+                }
+              ]
+            },
+            "description": "Sort deals by price in ascending order"
+          },
+          "response": []
+        },
+        {
+          "name": "Sort by Rating - Descending",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:5000/deals/sort?sort_by=rating&order=desc",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "deals",
+                "sort"
+              ],
+              "query": [
+                {
+                  "key": "sort_by",
+                  "value": "rating"
+                },
+                {
+                  "key": "order",
+                  "value": "desc"
+                }
+              ]
+            },
+            "description": "Sort deals by rating in descending order"
+          },
+          "response": []
+        },
+        {
+          "name": "Sort by Destination",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:5000/deals/sort?sort_by=destination&order=asc",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "deals",
+                "sort"
+              ],
+              "query": [
+                {
+                  "key": "sort_by",
+                  "value": "destination"
+                },
+                {
+                  "key": "order",
+                  "value": "asc"
+                }
+              ]
+            },
+            "description": "Sort deals by destination in ascending order"
+          },
+          "response": []
+        },
+        {
+          "name": "Get Recently Viewed Deals",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:5000/deals/recent",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "deals",
+                "recent"
+              ]
+            },
+            "description": "Retrieve the 10 most recently viewed deals"
+          },
+          "response": []
+        },
+        {
+          "name": "Get Popular Deals",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:5000/deals/popular",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "deals",
+                "popular"
+              ]
+            },
+            "description": "Retrieve the most popular (most-viewed) deals"
+          },
+          "response": []
+        },
+        {
+          "name": "Error: No search parameters",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:5000/deals/search",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "deals",
+                "search"
+              ]
+            },
+            "description": "Test error: search requires at least one parameter"
+          },
+          "response": []
+        },
+        {
+          "name": "Error: No filter parameters",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:5000/deals/filter",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "deals",
+                "filter"
+              ]
+            },
+            "description": "Test error: filter requires at least one parameter"
+          },
+          "response": []
+        },
+        {
+          "name": "Error: Update Deal not found",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"destination\": \"Tokyo\",\n  \"price\": 1500,\n  \"platform\": \"Agoda\",\n  \"rating\": 4.8,\n  \"travel_type\": \"Adventure\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:5000/deals/999",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "deals",
+                "999"
+              ]
+            },
+            "description": "Test error: update deal with ID 999 not found"
+          },
+          "response": []
+        },
+        {
+          "name": "Error: Update with invalid price",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"destination\": \"Tokyo\",\n  \"price\": -500,\n  \"platform\": \"Agoda\",\n  \"rating\": 4.8,\n  \"travel_type\": \"Adventure\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:5000/deals/1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "deals",
+                "1"
+              ]
+            },
+            "description": "Test validation: update with negative price"
+          },
+          "response": []
+        },
+        {
+          "name": "Error: Delete deal not found",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:5000/deals/999",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "deals",
+                "999"
+              ]
+            },
+            "description": "Test error: delete deal with ID 999 not found"
+          },
+          "response": []
+        },
+        {
+          "name": "Error: Filter with max < min",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:5000/deals/filter?min_price=1000&max_price=100",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "deals",
+                "filter"
+              ],
+              "query": [
+                {
+                  "key": "min_price",
+                  "value": "1000"
+                },
+                {
+                  "key": "max_price",
+                  "value": "100"
+                }
+              ]
+            },
+            "description": "Test validation: max_price must be >= min_price"
+          },
+          "response": []
+        },
+        {
+          "name": "Error: Sort missing sort_by",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:5000/deals/sort?order=asc",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "deals",
+                "sort"
+              ],
+              "query": [
+                {
+                  "key": "order",
+                  "value": "asc"
+                }
+              ]
+            },
+            "description": "Test error: sort requires sort_by parameter"
+          },
+          "response": []
+        },
+        {
+          "name": "Error: Sort invalid sort_by",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:5000/deals/sort?sort_by=invalid&order=asc",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "deals",
+                "sort"
+              ],
+              "query": [
+                {
+                  "key": "sort_by",
+                  "value": "invalid"
+                },
+                {
+                  "key": "order",
+                  "value": "asc"
+                }
+              ]
+            },
+            "description": "Test validation: sort_by must be price, rating, or destination"
+          },
+          "response": []
+        },
+        {
+          "name": "Error: Create with invalid JSON",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "http://localhost:5000/deals",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "deals"
+              ]
+            },
+            "description": "Test error: request body must be valid JSON"
+          },
+          "response": []
         }
-      },
-      "response": []
+      ]
     },
     {
-      "name": "Recent",
-      "protocolProfileBehavior": {
-        "disableBodyPruning": true
-      },
-      "request": {
-        "method": "GET",
-        "header": [],
-        "body": {
-          "mode": "raw",
-          "raw": "{\n    \"destination\":\"Canada\",\n    \"price\":200000,\n    \"platform\":\"Airbnb\",\n    \"rating\":5,\n    \"travel_type\":\"Luxury\"\n}"
-        },
-        "url": {
-          "raw": "http://127.0.0.1:5000/deals/recent",
-          "protocol": "http",
-          "host": [
-            "127",
-            "0",
-            "0",
-            "1"
-          ],
-          "port": "5000",
-          "path": [
-            "deals",
-            "recent"
-          ]
+      "name": "Stats",
+      "item": [
+        {
+          "name": "Get API Statistics",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:5000/stats",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "stats"
+              ]
+            },
+            "description": "Retrieve global API statistics (total requests, success rate, most-searched destination, most-viewed deal)"
+          },
+          "response": []
         }
-      },
-      "response": []
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:5000",
+      "type": "string"
     }
   ]
 }
