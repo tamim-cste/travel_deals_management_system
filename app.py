@@ -1,6 +1,8 @@
 from flask import Flask, jsonify
 from database.store import db
 from routes.deal_routes import deals_bp
+from routes.stats_routes import stats_bp           
+from services.stats_service import track_request  
 
 
 def create_app():
@@ -19,6 +21,12 @@ def create_app():
 
 
     app.register_blueprint(deals_bp)
+    app.register_blueprint(stats_bp)
+
+    @app.after_request                             
+    def record_api_usage(response):
+        track_request(response.status_code)
+        return response
 
     # Global error handler
     @app.errorhandler(404)

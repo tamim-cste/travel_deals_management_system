@@ -12,7 +12,7 @@ MAX_RECENT = 10
 class Deal(db.Model):
     __tablename__ = "deals"
 
-    id = db.Column(db.String(36), primary_key=True)
+    id = db.Column(db.Integer, primary_key=True,autoincrement=True)
     destination = db.Column(db.String(100), nullable=False)
     price = db.Column(db.Float, nullable=False)
     platform = db.Column(db.String(100), nullable=False)
@@ -71,7 +71,7 @@ def get_deal_by_id(deal_id):
 
 def insert_deal(data):
     deal = Deal(
-        id=str(uuid.uuid4()),
+        # id=str(uuid.uuid4()),
         destination=data["destination"],
         price=data["price"],
         platform=data["platform"],

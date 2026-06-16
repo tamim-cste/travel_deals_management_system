@@ -3,8 +3,10 @@ from flask import Blueprint, request, jsonify
 from services.deal_service import (
     create_deal, fetch_all_deals, fetch_deal,
     search_deals_service, filter_deals_service,
-    sort_deals_service, fetch_recently_viewed
+    sort_deals_service, fetch_recently_viewed,
+    update_deal_service, delete_deal_service, popular_deals_service  
 )
+
 from utils.validators import build_response
 from utils.logger import logger
 
@@ -133,6 +135,28 @@ def recently_viewed():
     return jsonify(response), status
 
 
+
+# ---------------- Popular Deals ----------------------
+
+@deals_bp.route("/popular", methods=["GET"])
+def popular_deals():
+    limit = request.args.get("limit")
+
+    results, errors = popular_deals_service(limit)
+
+    if errors:
+        response, status = build_response(False, "Validation failed.", data={"errors": errors}, status_code=422)
+        return jsonify(response), status
+
+    response, status = build_response(
+        True,
+        "Most viewed deals retrieved successfully.",
+        data={"deals": results, "total": len(results)}
+    )
+    return jsonify(response), status
+
+
+
 # ---------------- Get Single Deal ----------------------
 
 @deals_bp.route("/<string:deal_id>", methods=["GET"])
@@ -147,3 +171,44 @@ def get_deal(deal_id):
 
     response, status = build_response(True, "Deal retrieved successfully.", data=deal)
     return jsonify(response), status
+
+
+
+# ---------------- Update Deal ----------------------
+
+@deals_bp.route("/<string:deal_id>", methods=["PUT"])
+def update_deal_route(deal_id):
+    data = request.get_json(silent=True)
+
+    if not data:
+        logger.error(f"PUT /deals/{deal_id} — invalid or missing JSON body.")
+        response, status = build_response(False, "Request body must be valid JSON.", status_code=400)
+        return jsonify(response), status
+
+    deal, errors, not_found = update_deal_service(deal_id, data)
+
+    if not_found:
+        response, status = build_response(False, f"Deal with id '{deal_id}' not found.", status_code=404)
+        return jsonify(response), status
+
+    if errors:
+        response, status = build_response(False, "Validation failed.", data={"errors": errors}, status_code=422)
+        return jsonify(response), status
+
+    response, status = build_response(True, "Travel deal updated successfully.", data=deal)
+    return jsonify(response), status
+
+
+# ---------------- Delete Deal ----------------------
+
+@deals_bp.route("/<string:deal_id>", methods=["DELETE"])
+def delete_deal_route(deal_id):
+    deleted = delete_deal_service(deal_id)
+
+    if not deleted:
+        logger.error(f"DELETE /deals/{deal_id} — not found.")
+        response, status = build_response(False, f"Deal with id '{deal_id}' not found.", status_code=404)
+        return jsonify(response), status
+
+    response, status = build_response(True, "Travel deal deleted successfully.")
+    return jsonify(response), status   
