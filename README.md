@@ -62,8 +62,8 @@ project/
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/tamim-cste/travel_deals_management_system
-cd travel_deals_management_system
+git clone https://github.com/tamim-cste/travel_deals_management_system_Farman_Arefin_Tamim.git
+cd travel_deals_management_system_Farman_Arefin_Tamim
 ```
 
 ### 2. Create and activate virtual environment
